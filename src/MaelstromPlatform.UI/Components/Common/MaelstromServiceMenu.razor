@@ -1,0 +1,22 @@
+﻿@implements IDisposable
+
+<RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Center" Wrap="FlexWrap.NoWrap">
+    @foreach (var menuItem in @GlobalState.ServiceMenuItems)
+    {
+        <MaelstromButton Caption="@menuItem.Caption" Location="@menuItem.Location" />
+    }
+</RadzenStack>
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    protected override void OnInitialized()
+    {
+        GlobalState.StateChanged += () => StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        GlobalState.StateChanged -= StateHasChanged;
+    }
+}

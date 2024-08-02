@@ -1,0 +1,23 @@
+﻿@page "/issue"
+@using MaelstromPlatform.UI.Components.Services.Issue
+
+<IssueDashboard/>
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    private static readonly List<MaelstromMenuItem> Items =
+    [
+        new MaelstromMenuItem { Caption = "Dashboard", Location = "issue" },
+        new MaelstromMenuItem { Caption = "Browse", Location = "issue/browse" },
+        new MaelstromMenuItem { Caption = "New", Location = "issue/new" },
+        new MaelstromMenuItem { Caption = "Map", Location = "issue/map" }
+    ];
+
+    protected override void OnInitialized()
+    {
+        GlobalState.ServiceMenuItems = Items;
+        GlobalState.ActiveService = "Issue";
+        GlobalState.StateChanged.Invoke();
+    }
+}

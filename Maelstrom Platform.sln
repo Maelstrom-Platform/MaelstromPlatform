@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BAAEC608-9153-4D47-AD1C-1FBA0AFD53C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{71A984CD-2757-4690-A768-2A83ECC27CAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{45AE8667-FBBE-4FB2-84B9-6EECAFD8807A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		AUTHORS.md = AUTHORS.md
+		ChangeLog.md = ChangeLog.md
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		COPYING.md = COPYING.md
+		INSTALL.md = INSTALL.md
+		NEWS.md = NEWS.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaelstromPlatform.API", "src\MaelstromPlatform.API\MaelstromPlatform.API.csproj", "{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaelstromPlatform.UI", "src\MaelstromPlatform.UI\MaelstromPlatform.UI.csproj", "{FE79AA3D-2601-478D-8FA7-A3C605E1138B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaelstromPlatform.Tests", "Tests\MaelstromPlatform.Tests\MaelstromPlatform.Tests.csproj", "{81DDD50F-4A66-4D7F-BB35-3460C97C45DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE79AA3D-2601-478D-8FA7-A3C605E1138B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE79AA3D-2601-478D-8FA7-A3C605E1138B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE79AA3D-2601-478D-8FA7-A3C605E1138B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE79AA3D-2601-478D-8FA7-A3C605E1138B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D} = {BAAEC608-9153-4D47-AD1C-1FBA0AFD53C5}
+		{FE79AA3D-2601-478D-8FA7-A3C605E1138B} = {BAAEC608-9153-4D47-AD1C-1FBA0AFD53C5}
+		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA} = {71A984CD-2757-4690-A768-2A83ECC27CAD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEEEECBA-94C1-4702-8331-31BAA50B79A5}
+	EndGlobalSection
+EndGlobal

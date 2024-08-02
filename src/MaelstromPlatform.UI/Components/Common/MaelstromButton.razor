@@ -1,0 +1,13 @@
+﻿@inject NavigationManager Navigation
+
+<RadzenButton Style="width: 100%" ButtonStyle="ButtonStyle.Primary" ButtonSize="ButtonSize.Large" Click="@OnClick" Text="@Caption"></RadzenButton>
+
+@code {
+    [Parameter] public string Caption { get; set; } = string.Empty;
+    [Parameter] public string Location { get; set; } = string.Empty;
+
+    private void OnClick(MouseEventArgs args)
+    {
+        Navigation.NavigateTo(Location);
+    }
+}

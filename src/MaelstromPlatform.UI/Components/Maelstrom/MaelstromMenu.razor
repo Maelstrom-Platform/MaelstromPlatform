@@ -1,0 +1,64 @@
+﻿@using MaelstromPlatform.UI.Common
+@using MaelstromPlatform.UI.Components.Common
+
+@foreach (var menuItem in _menuItems)
+{
+    <RadzenColumn Size="2">
+        <MaelstromButton Caption="@menuItem.Caption" Location="@menuItem.Location" />
+    </RadzenColumn>
+}
+
+@code
+{
+    private List<MaelstromMenuItem> _menuItems =
+    [
+        new MaelstromMenuItem { Caption = "Home", Location = "home" },
+        new MaelstromMenuItem { Caption = "Issue", Location = "issue" },
+        new MaelstromMenuItem { Caption = "Customer", Location = "customer" },
+        new MaelstromMenuItem { Caption = "Location", Location = "location" },
+        new MaelstromMenuItem { Caption = "Build", Location = "build" },
+        new MaelstromMenuItem { Caption = "Release", Location = "release" },
+        new MaelstromMenuItem { Caption = "Iteration", Location = "iteration" },
+        new MaelstromMenuItem { Caption = "Backlog", Location = "backlog" },
+        new MaelstromMenuItem { Caption = "Task", Location = "task" },
+        new MaelstromMenuItem { Caption = "Team", Location = "team" },
+        new MaelstromMenuItem { Caption = "User Story", Location = "story" },
+        new MaelstromMenuItem { Caption = "Test Case", Location = "test" },
+        new MaelstromMenuItem { Caption = "Tag", Location = "tag" },
+        new MaelstromMenuItem { Caption = "Document", Location = "document" },
+        new MaelstromMenuItem { Caption = "Device", Location = "device" },
+        new MaelstromMenuItem { Caption = "Configuration", Location = "configuration" },
+        new MaelstromMenuItem { Caption = "Calendar", Location = "calendar" },
+        new MaelstromMenuItem { Caption = "Accounting", Location = "accounting" },
+        new MaelstromMenuItem { Caption = "Administration", Location = "administration" },
+        new MaelstromMenuItem { Caption = "Analytics", Location = "analytics" },
+        new MaelstromMenuItem { Caption = "System", Location = "system" },
+        new MaelstromMenuItem { Caption = "Dashboard", Location = "dashboard" },
+        new MaelstromMenuItem { Caption = "Source Code", Location = "source" },
+        new MaelstromMenuItem { Caption = "Requirement", Location = "requirement" },
+        new MaelstromMenuItem { Caption = "Person", Location = "person" },
+        new MaelstromMenuItem { Caption = "Help", Location = "help" },
+        new MaelstromMenuItem { Caption = "Product", Location = "product" },
+        new MaelstromMenuItem { Caption = "Project", Location = "project" },
+        new MaelstromMenuItem { Caption = "Marketing", Location = "marketing" },
+        new MaelstromMenuItem { Caption = "Sales", Location = "sales" },
+        new MaelstromMenuItem { Caption = "Quality Assurance", Location = "quality" },
+        new MaelstromMenuItem { Caption = "Engineering", Location = "engineering" },
+        new MaelstromMenuItem { Caption = "Implementation", Location = "implementation" },
+        new MaelstromMenuItem { Caption = "Customer Care", Location = "care" },
+        new MaelstromMenuItem { Caption = "Reports", Location = "reports" },
+        new MaelstromMenuItem { Caption = "Activity", Location = "activity" },
+        new MaelstromMenuItem { Caption = "Audit Log", Location = "audit" },
+        new MaelstromMenuItem { Caption = "Communication", Location = "communication" },
+        new MaelstromMenuItem { Caption = "Component", Location = "component" },
+        new MaelstromMenuItem { Caption = "Source Code Review", Location = "review" },
+        new MaelstromMenuItem { Caption = "Data Dictionary", Location = "dictionary" },
+        new MaelstromMenuItem { Caption = "Discussion", Location = "discussion" },
+        new MaelstromMenuItem { Caption = "License", Location = "license" },
+        new MaelstromMenuItem { Caption = "Organization", Location = "organization" },
+        new MaelstromMenuItem { Caption = "Build Notes", Location = "bnote" },
+        new MaelstromMenuItem { Caption = "Release Notes", Location = "rnote" },
+        new MaelstromMenuItem { Caption = "Roadmap", Location = "roadmap" },
+        new MaelstromMenuItem { Caption = "Vendor", Location = "vendor" }
+    ];
+}

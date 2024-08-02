@@ -1,0 +1,40 @@
+﻿@inherits LayoutComponentBase
+
+@using MaelstromPlatform.UI.Common
+@using MaelstromPlatform.UI.Components.Common
+@using MaelstromPlatform.UI.Components.Maelstrom
+
+<CascadingValue Value="@GlobalState">
+    <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Center" Wrap="FlexWrap.Wrap">
+        <RadzenRow>
+            <RadzenColumn Size="12">
+                <MaelstromHeader/>
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow>
+            <RadzenColumn Size="12">
+                <ServiceHeader/>
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow>
+            <RadzenColumn Size="2">
+                <MaelstromServiceMenu/>
+            </RadzenColumn>
+            <RadzenColumn Size="10">
+                @Body
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow>
+            <MaelstromMenu/>
+        </RadzenRow>
+        <RadzenRow>
+            <RadzenColumn Size="12">
+                <MaelstromFooter/>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenStack>
+</CascadingValue>
+
+@code {
+    private MaelstromState GlobalState { get; set; } = new();
+}

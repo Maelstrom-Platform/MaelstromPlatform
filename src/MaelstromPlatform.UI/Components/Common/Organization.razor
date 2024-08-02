@@ -1,0 +1,19 @@
+﻿@implements IDisposable
+
+@using MaelstromPlatform.UI.Common
+
+<RadzenText TextStyle="TextStyle.DisplayH4">@GlobalState.Organization</RadzenText>
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    protected override void OnInitialized()
+    {
+        GlobalState.StateChanged += () => StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        GlobalState.StateChanged -= StateHasChanged;
+    }
+}

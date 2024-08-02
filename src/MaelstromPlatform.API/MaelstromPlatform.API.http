@@ -1,0 +1,6 @@
+@MaelstromPlatform.API_HostAddress = http://localhost:5262
+
+GET {{MaelstromPlatform.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

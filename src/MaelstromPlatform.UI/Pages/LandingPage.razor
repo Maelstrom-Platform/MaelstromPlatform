@@ -1,0 +1,32 @@
+﻿@page "/"
+
+@inject NavigationManager Navigation
+
+@using MaelstromPlatform.UI.Common
+
+<RadzenText TextStyle="TextStyle.H1">Landing</RadzenText>
+<button @onclick="HandleClick">Login</button>
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    private static readonly List<MaelstromMenuItem> Items =
+    [
+    ];
+
+    protected override void OnInitialized()
+    {
+        GlobalState.ServiceMenuItems = Items;
+        GlobalState.ActiveService = "Landing";
+        GlobalState.StateChanged.Invoke();
+    }
+
+    private void HandleClick()
+    {
+        GlobalState.Organization = "My Good Organization";
+        GlobalState.Account = "jas";
+        GlobalState.StateChanged.Invoke();
+
+        Navigation.NavigateTo("home");
+    }
+}

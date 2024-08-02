@@ -1,0 +1,20 @@
+﻿@page "/home"
+@using MaelstromPlatform.UI.Components.Services.Home
+
+<PageTitle>Maelstrom Home</PageTitle>
+<Home/>
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    private static readonly List<MaelstromMenuItem> Items =
+    [
+    ];
+
+    protected override void OnInitialized()
+    {
+        GlobalState.ServiceMenuItems = Items;
+        GlobalState.ActiveService = "Home";
+        GlobalState.StateChanged.Invoke();
+    }
+}

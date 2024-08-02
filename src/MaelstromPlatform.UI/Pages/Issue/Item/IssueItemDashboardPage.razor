@@ -1,0 +1,26 @@
+﻿@page "/issue/1"
+@using MaelstromPlatform.UI.Components.Services.Issue.Item
+@layout ServiceItemShell
+
+<IssueItemDashboard Org="@Org"/>
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    private string Org { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Org = GlobalState.Organization;
+
+        GlobalState.ServiceItemMenuItems = Items;
+        GlobalState.ActiveService = "Issue";
+        GlobalState.StateChanged.Invoke();
+    }
+
+    private static readonly List<MaelstromMenuItem> Items =
+    [
+        new MaelstromMenuItem { Caption = "Dashboard", Location = "issue/1" },
+        new MaelstromMenuItem { Caption = "Profile", Location = "issue/1/profile" }
+    ];
+}

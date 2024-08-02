@@ -1,0 +1,44 @@
+﻿@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Start" Wrap="FlexWrap.NoWrap">
+    @if (IsLoading)
+    {
+        <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+    }
+    else
+    {
+        <RadzenText TextStyle="TextStyle.DisplayH4">Browse Issues</RadzenText>
+        <MaelstromDataGrid ColumnData="@Columns" Data="@Data" />
+        <button @onclick="HandleIssueItem">Issue 1 Item</button>
+    }
+</RadzenStack>
+
+@code {
+    private bool IsLoading { get; set; } = true;
+    private List<object> Data { get; set; } = new();
+
+    private List<MaelstromDataGridColumn> Columns =
+    [
+        new MaelstromDataGridColumn() { Property = "Identifier", Title = "Identifier", Filterable = true, Frozen = false, TextAlign = TextAlign.Left, Width = 100 },
+        new MaelstromDataGridColumn() { Property = "SummaryBrief", Title = "Summary", Filterable = true, Frozen = false, TextAlign = TextAlign.Left, Width = 300 }
+    ];
+
+    private async Task<List<object>> GetItemDetails()
+    {
+        var result = await Http.GetFromJsonAsync<List<IssueModel>>($"/api/issues") ?? new List<IssueModel>();
+        return (result.Cast<object>().ToList());
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Data = await GetItemDetails();
+        await base.OnParametersSetAsync();
+        IsLoading = false;
+    }
+
+    private void HandleIssueItem()
+    {
+        Navigation.NavigateTo("issue/1");
+    }
+}

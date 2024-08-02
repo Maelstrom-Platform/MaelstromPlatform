@@ -1,0 +1,28 @@
+﻿@using MaelstromPlatform.UI.Components.Common
+
+<RadzenDataGrid AllowFiltering="true"
+                AllowColumnResize="true"
+                AllowAlternatingRows="true"
+                FilterMode="FilterMode.Advanced"
+                AllowSorting="true"
+                PageSize="@PageSize"
+                AllowPaging="true"
+                PagerHorizontalAlign="HorizontalAlign.Left"
+                ShowPagingSummary="true"
+                Data="@Data"
+                SelectionMode="DataGridSelectionMode.Single"
+                >
+    <Columns>
+        @foreach (var column in ColumnData)
+        {
+            <RadzenDataGridColumn Property="@column.Property" Title="@column.Title" Frozen="@column.Frozen" Width="@column.Width.ToString()" TextAlign="@column.TextAlign" />
+        }
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    [Parameter] public List<object> Data { get; set; } = new();
+    [Parameter] public List<MaelstromDataGridColumn> ColumnData { get; set; } = new();
+
+    private ushort PageSize { get; set; } = 10;
+}

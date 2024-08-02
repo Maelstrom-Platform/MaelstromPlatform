@@ -1,0 +1,17 @@
+﻿@using MaelstromPlatform.UI.Common
+
+@if (@GlobalState.ActiveService != "Home" && @GlobalState.ActiveService != "Landing")
+{
+    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Left" Wrap="FlexWrap.NoWrap">
+        <RadzenText TextStyle="TextStyle.DisplayH4">@GlobalState.ActiveService Information Center</RadzenText>
+    </RadzenStack>
+}
+
+@code {
+    [CascadingParameter] public MaelstromState GlobalState { get; set; }
+
+    protected override void OnInitialized()
+    {
+        GlobalState.StateChanged += () => StateHasChanged();
+    }
+}
