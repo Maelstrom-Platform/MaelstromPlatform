@@ -26,6 +26,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaelstromPlatform.UI", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaelstromPlatform.Tests", "Tests\MaelstromPlatform.Tests\MaelstromPlatform.Tests.csproj", "{81DDD50F-4A66-4D7F-BB35-3460C97C45DA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maelstrom Platform", "Maelstrom Platform", "{85AF8745-7770-45D1-903D-AE41057B0EAF}"
+	ProjectSection(SolutionItems) = preProject
+		DataDictionary.md = DataDictionary.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +57,7 @@ Global
 		{9ABFBB64-8FC2-4CF3-ABAD-47835EF9C07D} = {BAAEC608-9153-4D47-AD1C-1FBA0AFD53C5}
 		{FE79AA3D-2601-478D-8FA7-A3C605E1138B} = {BAAEC608-9153-4D47-AD1C-1FBA0AFD53C5}
 		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA} = {71A984CD-2757-4690-A768-2A83ECC27CAD}
+		{85AF8745-7770-45D1-903D-AE41057B0EAF} = {45AE8667-FBBE-4FB2-84B9-6EECAFD8807A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEEEECBA-94C1-4702-8331-31BAA50B79A5}
