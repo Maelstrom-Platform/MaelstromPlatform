@@ -24,12 +24,29 @@ namespace MaelstromPlatform.API.Issue
             return Ok(_mapper.Map<IEnumerable<IssueForGetAllDto>>(issueEntities));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetIssueById")]
         public async Task<ActionResult<IssueForGetByIdDto>> GetIssueByIdAsync(Guid id)
         {
             var issueEntities = await _issueRepository.GetIssueByIdAsync(id);
 
             return Ok(_mapper.Map<IssueForGetByIdDto>(issueEntities));
         }
+
+        [HttpPost]
+        public async Task<ActionResult<IssueDto>> PostIssueAsync(IssueForPostDto issue)
+        {
+            var finalIssue = _mapper.Map<IssueEntity>(issue);
+            await _issueRepository.AddIssueAsync(finalIssue);
+            await _issueRepository.SaveChangesAsync();
+
+            var createdIssueToReturn = _mapper.Map<IssueDto>(finalIssue);
+
+            return CreatedAtRoute("GetIssueById",
+                new
+                {
+                    id = createdIssueToReturn.SysId
+                },
+                createdIssueToReturn);
+        }
     }
-}
+} 

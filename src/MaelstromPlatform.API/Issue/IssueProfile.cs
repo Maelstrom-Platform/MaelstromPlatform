@@ -8,6 +8,8 @@ namespace MaelstromPlatform.API.Issue
         {
             CreateMap<IssueEntity, IssueForGetAllDto>().ReverseMap();
             CreateMap<IssueEntity, IssueForGetByIdDto>().ReverseMap();
+            CreateMap<IssueEntity, IssueForPostDto>().ReverseMap();
+            CreateMap<IssueEntity, IssueDto>().ReverseMap();
         }
     }
 }
