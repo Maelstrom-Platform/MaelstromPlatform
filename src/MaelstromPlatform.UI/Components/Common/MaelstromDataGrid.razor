@@ -1,4 +1,5 @@
 ﻿@using MaelstromPlatform.UI.Components.Common
+@inject NavigationManager Navigation
 
 <RadzenDataGrid AllowFiltering="true"
                 AllowColumnResize="true"
@@ -11,11 +12,16 @@
                 ShowPagingSummary="true"
                 Data="@Data"
                 SelectionMode="DataGridSelectionMode.Single"
-                >
+                TItem="object">
     <Columns>
+        <RadzenDataGridColumn Context="obj" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Frozen="false">
+            <Template Context="obj">
+                <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Primary" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => ViewObject(obj))" @onclick:stopPropagation="true"></RadzenButton>
+            </Template>
+        </RadzenDataGridColumn>
         @foreach (var column in ColumnData)
         {
-            <RadzenDataGridColumn Property="@column.Property" Title="@column.Title" Frozen="@column.Frozen" Width="@column.Width.ToString()" TextAlign="@column.TextAlign" />
+            <RadzenDataGridColumn Property="@column.Property" Title="@column.Title" Frozen="@column.Frozen" Width="@column.Width.ToString()" TextAlign="@column.TextAlign"/>
         }
     </Columns>
 </RadzenDataGrid>
@@ -25,4 +31,9 @@
     [Parameter] public List<MaelstromDataGridColumn> ColumnData { get; set; } = new();
 
     private ushort PageSize { get; set; } = 10;
+
+    private void ViewObject(object obj)
+    {
+        Navigation.NavigateTo("issue/1");
+    }
 }
