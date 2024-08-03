@@ -1,9 +1,9 @@
-﻿@page "/issue/1/profile"
+﻿@page "/issue/{Id:guid}/profile"
 @using MaelstromPlatform.UI.Components.Services.Issue.Item
 @layout ServiceItemShell
 
-<IssueItemProfile/>
+<IssueItemProfile Id="@Id" />
 
 @code {
-
+    [Parameter] public Guid Id { get; set; }
 }

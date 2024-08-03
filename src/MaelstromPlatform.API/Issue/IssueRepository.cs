@@ -17,6 +17,11 @@ namespace MaelstromPlatform.API.Issue
             return await _context.Issues.ToListAsync();
         }
 
+        public async Task<IssueEntity> GetIssueByIdAsync(Guid id)
+        {
+            return await _context.Issues.Where(i => i.SysId == id).FirstOrDefaultAsync();
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() >= 0);

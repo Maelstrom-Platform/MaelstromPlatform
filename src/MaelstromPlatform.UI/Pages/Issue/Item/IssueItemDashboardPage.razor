@@ -1,26 +1,25 @@
-﻿@page "/issue/1"
+﻿@page "/issue/{Id:guid}"
 @using MaelstromPlatform.UI.Components.Services.Issue.Item
 @layout ServiceItemShell
 
-<IssueItemDashboard Org="@Org"/>
+<IssueItemDashboard Id="@Id" />
 
 @code {
     [CascadingParameter] public MaelstromState GlobalState { get; set; }
+    [Parameter] public Guid Id { get; set; }
 
     private string Org { get; set; }
 
     protected override void OnInitialized()
     {
-        Org = GlobalState.Organization;
+        Items.Add(new MaelstromMenuItem { Caption = "Dashboard", Location = $"issue/{Id}" });
+        Items.Add(new MaelstromMenuItem { Caption = "Profile", Location = $"issue/{Id}/profile" });
 
+        Org = GlobalState.Organization;
         GlobalState.ServiceItemMenuItems = Items;
         GlobalState.ActiveService = "Issue";
         GlobalState.StateChanged.Invoke();
     }
 
-    private static readonly List<MaelstromMenuItem> Items =
-    [
-        new MaelstromMenuItem { Caption = "Dashboard", Location = "issue/1" },
-        new MaelstromMenuItem { Caption = "Profile", Location = "issue/1/profile" }
-    ];
+    private List<MaelstromMenuItem> Items { get; set; } = new();
 }

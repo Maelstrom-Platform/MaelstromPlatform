@@ -9,14 +9,38 @@
     else
     {
         <RadzenText TextStyle="TextStyle.DisplayH4">Browse Issues</RadzenText>
-        <MaelstromDataGrid ColumnData="@Columns" Data="@Data" />
-        <button @onclick="HandleIssueItem">Issue 1 Item</button>
+        <RadzenDataGrid AllowFiltering="true"
+                        AllowColumnResize="true"
+                        AllowAlternatingRows="true"
+                        FilterMode="FilterMode.Advanced"
+                        AllowSorting="true"
+                        PageSize="@PageSize"
+                        AllowPaging="true"
+                        PagerHorizontalAlign="HorizontalAlign.Left"
+                        ShowPagingSummary="true"
+                        Data="@Data"
+                        SelectionMode="DataGridSelectionMode.Single"
+                        TItem="IssueModel">
+            <Columns>
+                <RadzenDataGridColumn Context="issue" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Frozen="false">
+                    <Template Context="issue">
+                        <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Primary" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => ViewObject(issue))" @onclick:stopPropagation="true"></RadzenButton>
+                    </Template>
+                </RadzenDataGridColumn>
+                @foreach (var column in Columns)
+                {
+                    <RadzenDataGridColumn Property="@column.Property" Title="@column.Title" Frozen="@column.Frozen" Width="@column.Width.ToString()" TextAlign="@column.TextAlign"/>
+                }
+            </Columns>
+        </RadzenDataGrid>
     }
 </RadzenStack>
 
 @code {
     private bool IsLoading { get; set; } = true;
-    private List<object> Data { get; set; } = new();
+    private List<IssueModel> Data { get; set; } = new();
+
+    private ushort PageSize { get; set; } = 1;
 
     private List<MaelstromDataGridColumn> Columns =
     [
@@ -24,10 +48,10 @@
         new MaelstromDataGridColumn() { Property = "SummaryBrief", Title = "Summary", Filterable = true, Frozen = false, TextAlign = TextAlign.Left, Width = 300 }
     ];
 
-    private async Task<List<object>> GetItemDetails()
+    private async Task<List<IssueModel>> GetItemDetails()
     {
         var result = await Http.GetFromJsonAsync<List<IssueModel>>($"/api/issues") ?? new List<IssueModel>();
-        return (result.Cast<object>().ToList());
+        return result;
     }
 
     protected override async Task OnParametersSetAsync()
@@ -37,8 +61,8 @@
         IsLoading = false;
     }
 
-    private void HandleIssueItem()
+    private void ViewObject(IssueModel issue)
     {
-        Navigation.NavigateTo("issue/1");
+        Navigation.NavigateTo($"issue/{issue.SysId}");
     }
 }

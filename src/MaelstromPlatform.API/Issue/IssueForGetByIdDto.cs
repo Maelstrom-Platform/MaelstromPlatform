@@ -1,9 +1,15 @@
-﻿namespace MaelstromPlatform.UI.Components.Services.Issue
+﻿using MaelstromPlatform.API.Person;
+using MaelstromPlatform.API.Team;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace MaelstromPlatform.API.Issue
 {
-    public class IssueModel
+    public class IssueForGetByIdDto
     {
         public Guid SysId { get; set; }
         public string Identifier { get; set; }
+        public Guid OrganizationId { get; set; }
         public string SummaryBrief { get; set; }
         public string SummaryLong { get; set; }
         public DateTime Origin { get; set; }
@@ -26,5 +32,6 @@
         public Guid ReportedByPrimaryPersonSysId { get; set; }
         public DateTime FoundOn { get; set; }
         public DateTime ReportedOn { get; set; }
+        public ICollection<IssueApprovalEntity> Approvals { get; set; } = new List<IssueApprovalEntity>();
     }
 }

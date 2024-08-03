@@ -23,5 +23,13 @@ namespace MaelstromPlatform.API.Issue
 
             return Ok(_mapper.Map<IEnumerable<IssueForGetAllDto>>(issueEntities));
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IssueForGetByIdDto>> GetIssueByIdAsync(Guid id)
+        {
+            var issueEntities = await _issueRepository.GetIssueByIdAsync(id);
+
+            return Ok(_mapper.Map<IssueForGetByIdDto>(issueEntities));
+        }
     }
 }

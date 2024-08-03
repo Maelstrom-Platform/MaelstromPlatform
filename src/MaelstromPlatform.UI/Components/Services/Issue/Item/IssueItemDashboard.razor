@@ -1,6 +1,35 @@
-﻿<RadzenText TextStyle="TextStyle.DisplayH4">Issue Item Dashboard</RadzenText>
-<RadzenText TextStyle="TextStyle.DisplayH4">@Org</RadzenText>
+﻿@inject HttpClient Http
+
+<RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Start" Wrap="FlexWrap.NoWrap">
+    @if (IsLoading)
+    {
+        <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+    }
+    else
+    {
+        <RadzenText TextStyle="TextStyle.DisplayH4">Issue @Identifier Dashboard</RadzenText>
+    }
+</RadzenStack>
 
 @code {
-    [Parameter] public string Org { get; set; }
+    [Parameter] public Guid Id { get; set; }
+
+    private bool IsLoading { get; set; } = true;
+
+    private IssueModel IssueData = new();
+    private string Identifier { get; set; }
+
+    private async Task<IssueModel> GetItemDetails()
+    {
+        var result = await Http.GetFromJsonAsync<IssueModel>($"/api/issues/{Id}") ?? new IssueModel();
+        return result;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        IssueData = await GetItemDetails();
+        Identifier = IssueData.Identifier;
+        await base.OnParametersSetAsync();
+        IsLoading = false;
+    }
 }
