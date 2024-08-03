@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaelstromPlatform.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maelstrom Platform", "Maelstrom Platform", "{85AF8745-7770-45D1-903D-AE41057B0EAF}"
 	ProjectSection(SolutionItems) = preProject
-		DataDictionary.md = DataDictionary.md
+		Documents\DataDictionary.md = Documents\DataDictionary.md
 	EndProjectSection
 EndProject
 Global
