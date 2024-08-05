@@ -23,7 +23,8 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddDbContext<MaelstromContext>(
     dbContextOptions => dbContextOptions.UseSqlServer(
-        builder.Configuration.GetConnectionString("MaelstromDbConnectionStringDev")));
+        //builder.Configuration.GetConnectionString("MaelstromDbConnectionStringDev")));
+        Environment.GetEnvironmentVariable("SQLCONNSTR_MaelstromPlatformDev")));
 
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();
 
