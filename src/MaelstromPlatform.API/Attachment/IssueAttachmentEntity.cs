@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MaelstromPlatform.API.Person;
+using MaelstromPlatform.API.Issue;
 
-namespace MaelstromPlatform.API.Issue
+namespace MaelstromPlatform.API.Attachment
 {
-    public class IssueChampionEntity
+    public class IssueAttachmentEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,8 +12,7 @@ namespace MaelstromPlatform.API.Issue
 
         public Guid IssueSysId { get; set; }
         public IssueEntity Issue { get; set; }
-        [ForeignKey("Champion")]
-        public Guid PersonSysId { get; set; }
-        public PersonEntity Champion { get; set; }
+        public Guid AttachmentSysId { get; set; }
+        public AttachmentEntity Attachment { get; set; }
     }
 }

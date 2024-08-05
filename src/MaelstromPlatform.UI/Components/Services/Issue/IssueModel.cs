@@ -4,6 +4,7 @@
     {
         public Guid SysId { get; set; }
         public string Identifier { get; set; }
+        public string Slug { get; set; }
         public string SummaryBrief { get; set; }
         public string SummaryLong { get; set; }
         public DateTime Origin { get; set; }

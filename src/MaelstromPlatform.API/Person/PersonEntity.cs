@@ -23,5 +23,6 @@ namespace MaelstromPlatform.API.Person
         public ICollection<IssueEntity> IssuesOwned { get; } = new List<IssueEntity>();
         public ICollection<IssueEntity> IssuesChampioned { get; } = new List<IssueEntity>();
         public ICollection<IssueEntity> IssuesReported { get; } = new List<IssueEntity>();
+        public ICollection<IssueChampionEntity> IssueChampions { get; set; }
     }
 }

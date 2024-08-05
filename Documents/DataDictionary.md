@@ -9,3 +9,4 @@
 |5.|Reported By||||
 |6.|Issue|||An issue is a model of a problem in a physical environment or a defect in a software application.|
 |7.|User Story|||A user story is a model of a request to enhance a software application or physical environment.|
+
