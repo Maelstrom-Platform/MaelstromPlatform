@@ -1,382 +1,362 @@
 ﻿<RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Start" Wrap="FlexWrap.NoWrap">
-    @if (IsLoading)
-    {
-        <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
-    }
-    else
-    {
-        <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Start" Wrap="FlexWrap.NoWrap">
-            <RadzenText TextStyle="TextStyle.DisplayH4">New Issue</RadzenText>
-            <EditForm Model="Issue" OnValidSubmit="Save" FormName="IssueNew">
-                <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Center" Wrap="FlexWrap.NoWrap">
-                    @* Identity *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Identity" CollapseTitle="Identity" ExpandAriaLabel="Identity" CollapseAriaLabel="Identity">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="account_circle"/><b>Identity</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Slug" Variant="Variant.Outlined" Style="width: 100%; margin-bottom: 15px;">
-                                        <ChildContent>
-                                            <RadzenTextBox @bind-Value="@Issue.Slug" MaxLength="50"/>
-                                        </ChildContent>
-                                        <Helper>
-                                            <RadzenText TextStyle="TextStyle.Caption">Required - 50 Characters Maximum</RadzenText>
-                                        </Helper>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Brief Summary" Variant="Variant.Outlined" Style="width: 100%; margin-bottom: 15px;">
-                                        <ChildContent>
-                                            <RadzenTextBox @bind-Value="@Issue.SummaryBrief"/>
-                                        </ChildContent>
-                                        <Helper>
-                                            <RadzenText TextStyle="TextStyle.Caption">Required - 72 Characters Maximum</RadzenText>
-                                        </Helper>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Long Summary" Variant="Variant.Outlined" Style="width: 100%; margin-bottom: 15px;">
-                                        <ChildContent>
-                                            <RadzenTextBox @bind-Value="@Issue.SummaryLong"/>
-                                        </ChildContent>
-                                        <Helper>
-                                            <RadzenText TextStyle="TextStyle.Caption">Required - 128 Characters Maximum</RadzenText>
-                                        </Helper>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Origin *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Origin" CollapseTitle="Origin" ExpandAriaLabel="Origin" CollapseAriaLabel="Origin">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="home"/><b>Origin</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Found On" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss"/>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Reported On" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDatePicker @bind-Value="@Issue.ReportedOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss"/>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Ownership *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Ownership" CollapseTitle="Ownership" ExpandAriaLabel="Ownership" CollapseAriaLabel="Ownership">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Ownership</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Primary Owner - Person" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.FoundOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Primary Owner - Team" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.ReportedOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Product/Project *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="ProductProject" CollapseTitle="ProductProject" ExpandAriaLabel="ProductProject" CollapseAriaLabel="ProductProject">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Product&sol;Project</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Product" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@TestPeople" Data="@TestPeople" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Project" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@TestPeople" Data="@TestPeople" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Encounter *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Encounter" CollapseTitle="Encounter" ExpandAriaLabel="Encounter" CollapseAriaLabel="Encounter">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Encounter</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Primary Customer" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.FoundOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Customers" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenListBox @bind-Value="@TestPeople" Data="@TestPeople" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Components" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Priority" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Impact *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Impact" CollapseTitle="Impact" ExpandAriaLabel="Impact" CollapseAriaLabel="Impact">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Impact</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Kind" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.FoundOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Severity" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.FoundOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Components" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss"/>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Priority" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss"/>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Advocacy *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Advocacy" CollapseTitle="Advocacy" ExpandAriaLabel="Advocacy" CollapseAriaLabel="Advocacy">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Advocacy</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Primary Champion - Person" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.PrimaryChampionSysId" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Primary Champion - Team" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.ReportedOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenLabel Component="ChampionsPeople" Text="Champions - People"></RadzenLabel><br />
-                                    <RadzenListBox Data="@TestPeople" Name="ChampionsPeople" TValue="string[]"/>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenLabel Component="ChampionsTeams" Text="Champions - Teams"></RadzenLabel><br />
-                                    <RadzenListBox Data="@TestPeople" Name="ChampionsTeams" TValue="string[]"/>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Vote(s) For" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.PrimaryChampionSysId" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Vote(s) Against" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.ReportedOn" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Status *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Status" CollapseTitle="Status" ExpandAriaLabel="Status" CollapseAriaLabel="Status">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Status</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="State" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.IssueStateSysId" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Status" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.IssueStatusSysId" />
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Workflow *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Workflow" CollapseTitle="Workflow" ExpandAriaLabel="Workflow" CollapseAriaLabel="Workflow">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Workflow</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenCheckBox @bind-Value="@Issue.Approved" Name="Approved" />
-                                    <RadzenLabel Text="Approved?" Component="Approved" />
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Assigned Primary Person" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.PrimaryChampionSysId"/>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenFormField AllowFloatingLabel="false" Text="Assigned Primary Team" Variant="Variant.Outlined" Style="width: 100%">
-                                        <RadzenDropDown @bind-Value="@Issue.ReportedOn"/>
-                                    </RadzenFormField>
-                                </RadzenColumn>
-                            </RadzenRow>
-                            <RadzenRow>
-                                <RadzenColumn Size="6">
-                                    <RadzenLabel Component="AssignedPeople" Text="Assigned People"></RadzenLabel><br />
-                                    <RadzenListBox Data="@TestPeople" Name="AssignedPeople" TValue="string[]"/>
-                                </RadzenColumn>
-                                <RadzenColumn Size="6">
-                                    <RadzenLabel Component="AssignedTeams" Text="Assigned Teams"></RadzenLabel><br />
-                                    <RadzenListBox Data="@TestPeople" Name="AssignedTeams"TValue="string[]"/>
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Problem Statement *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="ProblemStatement" CollapseTitle="ProblemStatement" ExpandAriaLabel="ProblemStatement" CollapseAriaLabel="ProblemStatement">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Problem Statement</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenHtmlEditor />
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Work-Around *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="WorkAround" CollapseTitle="WorkAround" ExpandAriaLabel="WorkAround" CollapseAriaLabel="WorkAround">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Work-Around</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenHtmlEditor />
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Steps To Reproduce *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="StepsToReproduce" CollapseTitle="StepsToReproduce" ExpandAriaLabel="StepsToReproduce" CollapseAriaLabel="StepsToReproduce">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Steps To Reproduce</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenHtmlEditor />
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    @* Attachments *@
-                    <RadzenFieldset AllowCollapse="true" ExpandTitle="Attachments" CollapseTitle="Attachments" ExpandAriaLabel="Attachments" CollapseAriaLabel="Attachments">
-                        <HeaderTemplate>
-                            <RadzenStack Orientation="Orientation.Horizontal" Gap="0.25rem">
-                                <RadzenIcon Icon="face" /><b>Attachments</b>
-                            </RadzenStack>
-                        </HeaderTemplate>
-                        <ChildContent>
-                            <RadzenRow>
-                                <RadzenColumn Size="12">
-                                    <RadzenHtmlEditor />
-                                </RadzenColumn>
-                            </RadzenRow>
-                        </ChildContent>
-                    </RadzenFieldset>
-                    <RadzenButton ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary">Save</RadzenButton>
-                </RadzenStack>
-            </EditForm>
+    <RadzenText TextStyle="TextStyle.DisplayH4">New Issue</RadzenText>
+    <EditForm Model="Issue" OnValidSubmit="Save" FormName="IssueNew">
+        <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Center" Wrap="FlexWrap.NoWrap">
+            @* Identity *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Identity" CollapseTitle="Identity" ExpandAriaLabel="Identity" CollapseAriaLabel="Identity">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="account_circle" /><b>Identity</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Slug" Variant="Variant.Outlined" Style="width: 100%; margin-bottom: 15px;">
+                                <ChildContent>
+                                    <RadzenTextBox @bind-Value="@Issue.Slug" MaxLength="50" />
+                                </ChildContent>
+                                <Helper>
+                                    <RadzenText TextStyle="TextStyle.Caption">Required - 50 Characters Maximum</RadzenText>
+                                </Helper>
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Brief Summary" Variant="Variant.Outlined" Style="width: 100%; margin-bottom: 15px;">
+                                <ChildContent>
+                                    <RadzenTextBox @bind-Value="@Issue.SummaryBrief" />
+                                </ChildContent>
+                                <Helper>
+                                    <RadzenText TextStyle="TextStyle.Caption">Required - 72 Characters Maximum</RadzenText>
+                                </Helper>
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Long Summary" Variant="Variant.Outlined" Style="width: 100%; margin-bottom: 15px;">
+                                <ChildContent>
+                                    <RadzenTextBox @bind-Value="@Issue.SummaryLong" />
+                                </ChildContent>
+                                <Helper>
+                                    <RadzenText TextStyle="TextStyle.Caption">Required - 128 Characters Maximum</RadzenText>
+                                </Helper>
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Origin *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Origin" CollapseTitle="Origin" ExpandAriaLabel="Origin" CollapseAriaLabel="Origin">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="home" /><b>Origin</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Found On" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Reported On" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDatePicker @bind-Value="@Issue.ReportedOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Ownership *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Ownership" CollapseTitle="Ownership" ExpandAriaLabel="Ownership" CollapseAriaLabel="Ownership">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Ownership</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Owner - Person" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.PrimaryOwnerSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Owner - Team" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.PrimaryOwnerTeamSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Product/Project *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="ProductProject" CollapseTitle="ProductProject" ExpandAriaLabel="ProductProject" CollapseAriaLabel="ProductProject">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Product&sol;Project</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Product" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@TestPerson1" Data="@TestPeople" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Project" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@TestPerson2" Data="@TestPeople" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Encounter *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Encounter" CollapseTitle="Encounter" ExpandAriaLabel="Encounter" CollapseAriaLabel="Encounter">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Encounter</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Customer" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.FoundOn" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Customers" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenListBox @bind-Value="@TestPeople" Data="@TestPeople" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Components" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Priority" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Impact *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Impact" CollapseTitle="Impact" ExpandAriaLabel="Impact" CollapseAriaLabel="Impact">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Impact</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Kind" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.FoundOn" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Severity" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.FoundOn" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Components" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Priority" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDatePicker @bind-Value="@Issue.FoundOn" ShowButton="false" AllowClear="true" AllowInput="true" ShowCalendarWeek="true" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="1" SecondsStep="1" DateFormat="yyyy-MM-dd HH:mm:ss" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Advocacy *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Advocacy" CollapseTitle="Advocacy" ExpandAriaLabel="Advocacy" CollapseAriaLabel="Advocacy">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Advocacy</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Champion - Person" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.PrimaryChampionSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Primary Champion - Team" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.ReportedOn" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenLabel Component="ChampionsPeople" Text="Champions - People"></RadzenLabel><br />
+                            <RadzenListBox Data="@TestPeople" Name="ChampionsPeople" TValue="string[]" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenLabel Component="ChampionsTeams" Text="Champions - Teams"></RadzenLabel><br />
+                            <RadzenListBox Data="@TestPeople" Name="ChampionsTeams" TValue="string[]" />
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Vote(s) For" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.PrimaryChampionSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Vote(s) Against" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.ReportedOn" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Status *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Status" CollapseTitle="Status" ExpandAriaLabel="Status" CollapseAriaLabel="Status">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Status</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="State" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.IssueStateSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Status" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.IssueStatusSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Workflow *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Workflow" CollapseTitle="Workflow" ExpandAriaLabel="Workflow" CollapseAriaLabel="Workflow">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Workflow</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenCheckBox @bind-Value="@Issue.Approved" Name="Approved" />
+                            <RadzenLabel Text="Approved?" Component="Approved" />
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Assigned Primary Person" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.PrimaryChampionSysId" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenFormField AllowFloatingLabel="false" Text="Assigned Primary Team" Variant="Variant.Outlined" Style="width: 100%">
+                                <RadzenDropDown @bind-Value="@Issue.ReportedOn" />
+                            </RadzenFormField>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow>
+                        <RadzenColumn Size="6">
+                            <RadzenLabel Component="AssignedPeople" Text="Assigned People"></RadzenLabel><br />
+                            <RadzenListBox Data="@TestPeople" Name="AssignedPeople" TValue="string[]" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="6">
+                            <RadzenLabel Component="AssignedTeams" Text="Assigned Teams"></RadzenLabel><br />
+                            <RadzenListBox Data="@TestPeople" Name="AssignedTeams" TValue="string[]" />
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Problem Statement *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="ProblemStatement" CollapseTitle="ProblemStatement" ExpandAriaLabel="ProblemStatement" CollapseAriaLabel="ProblemStatement">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Problem Statement</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenHtmlEditor Style="height: 500px;" />
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Work-Around *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="WorkAround" CollapseTitle="WorkAround" ExpandAriaLabel="WorkAround" CollapseAriaLabel="WorkAround">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Work-Around</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenHtmlEditor Style="height: 500px;" />
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Steps To Reproduce *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="StepsToReproduce" CollapseTitle="StepsToReproduce" ExpandAriaLabel="StepsToReproduce" CollapseAriaLabel="StepsToReproduce">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Steps To Reproduce</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenHtmlEditor Style="height: 500px;" />
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            @* Attachments *@
+            <RadzenFieldset AllowCollapse="true" ExpandTitle="Attachments" CollapseTitle="Attachments" ExpandAriaLabel="Attachments" CollapseAriaLabel="Attachments">
+                <HeaderTemplate>
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.25rem">
+                        <RadzenIcon Icon="face" /><b>Attachments</b>
+                    </RadzenStack>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenRow>
+                        <RadzenColumn Size="12">
+                            <RadzenHtmlEditor />
+                        </RadzenColumn>
+                    </RadzenRow>
+                </ChildContent>
+            </RadzenFieldset>
+            <RadzenButton ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary">Save</RadzenButton>
         </RadzenStack>
-    }
+    </EditForm>
 </RadzenStack>
 
 @code {
-    private bool IsLoading { get; set; } = true;
     private IssueModel Issue { get; set; } = new();
 
     private string[] TestPeople = ["P1", "P2", "P3"];
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-        IsLoading = false;
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        IsLoading = false;
-    }
-
+    private string TestPerson1 = "P1";
+    private string TestPerson2 = "P2";
     private void Save()
     {
 
