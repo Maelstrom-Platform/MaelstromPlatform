@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		CONTRIBUTING.md = CONTRIBUTING.md
 		COPYING.md = COPYING.md
+		.github\workflows\dev_maelstromplatform-api-dev.yml = .github\workflows\dev_maelstromplatform-api-dev.yml
 		INSTALL.md = INSTALL.md
 		NEWS.md = NEWS.md
 		README.md = README.md
