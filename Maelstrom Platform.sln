@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		CONTRIBUTING.md = CONTRIBUTING.md
 		COPYING.md = COPYING.md
 		INSTALL.md = INSTALL.md
+		.github\workflows\main_maelstromplatformuidev.yml = .github\workflows\main_maelstromplatformuidev.yml
 		NEWS.md = NEWS.md
 		README.md = README.md
 	EndProjectSection
@@ -32,10 +33,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maelstrom Platform", "Maels
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Issue", "Issue", "{DBC16368-0C96-4B40-BC3E-1C1A59FE35E2}"
-	ProjectSection(SolutionItems) = preProject
-		Documents\Issue\README.md = Documents\Issue\README.md
-		Documents\Issue\Requirements.md = Documents\Issue\Requirements.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5E0058B7-BFF2-4638-8674-7C61D1D281DC}"
 EndProject
