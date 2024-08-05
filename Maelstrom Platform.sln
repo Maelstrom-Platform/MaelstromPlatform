@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		AUTHORS.md = AUTHORS.md
+		.github\workflows\azure-static-web-apps-thankful-ground-06042d60f.yml = .github\workflows\azure-static-web-apps-thankful-ground-06042d60f.yml
 		ChangeLog.md = ChangeLog.md
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		CONTRIBUTING.md = CONTRIBUTING.md
