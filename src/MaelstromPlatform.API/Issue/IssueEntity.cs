@@ -1,6 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MaelstromPlatform.API.Attachment;
+using MaelstromPlatform.API.Customer;
+using MaelstromPlatform.API.Document;
 using MaelstromPlatform.API.Person;
+using MaelstromPlatform.API.Product;
+using MaelstromPlatform.API.Project;
 using MaelstromPlatform.API.Team;
 
 namespace MaelstromPlatform.API.Issue
@@ -21,6 +26,7 @@ namespace MaelstromPlatform.API.Issue
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid SysId { get; set; }
         public string Identifier { get; set; } = identifier;
+        public string Slug { get; set; }
         public string SummaryBrief { get; set; } = summaryBrief;
         public string SummaryLong { get; set; } = summaryLong;
         public DateTime Origin { get; set; } = origin;
@@ -56,5 +62,19 @@ namespace MaelstromPlatform.API.Issue
         public DateTime FoundOn { get; set; } = foundOn;
         public DateTime ReportedOn { get; set; } = reportedOn;
         public ICollection<IssueApprovalEntity> Approvals { get; } = new List<IssueApprovalEntity>();
+        public Guid ProductSysId { get; set; }
+        public ProductEntity Product { get; set; } = null!;
+        public Guid ProjectSysId { get; set; }
+        public ProjectEntity Project { get; set; } = null!;
+        public Guid PrimaryCustomerSysId { get; set; }
+        public CustomerEntity PrimaryCustomer { get; set; } = null!;
+        public ICollection<IssueCustomerEntity> IssueCustomers { get; set; } = null!;
+        public ICollection<IssueComponentEntity> Components { get; set; } = null!;
+        public ICollection<IssueAttachmentEntity> Attachments { get; set; } = null!;
+        public ICollection<IssueChampionEntity> Champions { get; set; } = null!;
+        public ICollection<IssueDocumentEntity> Documents { get; set; } = null!;
+        public ICollection<IssueProductEntity> Products { get; set; } = null!;
+        public ICollection<IssueProjectEntity> Projects { get; set; } = null!;
+        public ICollection<IssueTagEntity> Tags { get; set; } = null!;
     }
 }

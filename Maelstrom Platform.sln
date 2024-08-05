@@ -31,6 +31,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maelstrom Platform", "Maels
 		Documents\DataDictionary.md = Documents\DataDictionary.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Issue", "Issue", "{DBC16368-0C96-4B40-BC3E-1C1A59FE35E2}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Issue\README.md = Documents\Issue\README.md
+		Documents\Issue\Requirements.md = Documents\Issue\Requirements.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5E0058B7-BFF2-4638-8674-7C61D1D281DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +66,8 @@ Global
 		{FE79AA3D-2601-478D-8FA7-A3C605E1138B} = {BAAEC608-9153-4D47-AD1C-1FBA0AFD53C5}
 		{81DDD50F-4A66-4D7F-BB35-3460C97C45DA} = {71A984CD-2757-4690-A768-2A83ECC27CAD}
 		{85AF8745-7770-45D1-903D-AE41057B0EAF} = {45AE8667-FBBE-4FB2-84B9-6EECAFD8807A}
+		{DBC16368-0C96-4B40-BC3E-1C1A59FE35E2} = {5E0058B7-BFF2-4638-8674-7C61D1D281DC}
+		{5E0058B7-BFF2-4638-8674-7C61D1D281DC} = {85AF8745-7770-45D1-903D-AE41057B0EAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEEEECBA-94C1-4702-8331-31BAA50B79A5}

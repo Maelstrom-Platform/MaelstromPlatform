@@ -22,6 +22,184 @@ namespace MaelstromPlatform.API._Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("MaelstromPlatform.API.Attachment.AttachmentEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MIMEType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Qualifier")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Attachments");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Attachment.IssueAttachmentEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AttachmentSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("AttachmentSysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.ToTable("IssueAttachments");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Component.ComponentEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Components");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Customer.CustomerEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Organization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Customer.IssueCustomerEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CustomerSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("CustomerSysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.ToTable("IssueCustomers");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Document.DocumentEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PrimaryAuthor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Documents");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Document.IssueDocumentEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DocumentSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("DocumentSysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.ToTable("IssueDocuments");
+                });
+
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueApprovalEntity", b =>
                 {
                     b.Property<Guid>("SysId")
@@ -71,9 +249,40 @@ namespace MaelstromPlatform.API._Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PersonSysId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("SysId");
 
+                    b.HasIndex("IssueSysId");
+
+                    b.HasIndex("PersonSysId");
+
                     b.ToTable("IssueChampions");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueComponentEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ComponentSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("ComponentSysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.ToTable("IssueComponents");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueEntity", b =>
@@ -121,6 +330,9 @@ namespace MaelstromPlatform.API._Migrations
                     b.Property<Guid>("PrimaryChampionSysId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("PrimaryCustomerSysId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("PrimaryFoundByTeamSysId")
                         .HasColumnType("uniqueidentifier");
 
@@ -138,6 +350,12 @@ namespace MaelstromPlatform.API._Migrations
                         .HasMaxLength(8192)
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ProductSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProjectSysId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ReportedByPrimaryPersonSysId")
                         .HasColumnType("uniqueidentifier");
 
@@ -148,6 +366,10 @@ namespace MaelstromPlatform.API._Migrations
 
                     b.Property<bool>("Resolved")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StepsToReproduce")
                         .IsRequired()
@@ -185,6 +407,8 @@ namespace MaelstromPlatform.API._Migrations
 
                     b.HasIndex("PrimaryChampionSysId");
 
+                    b.HasIndex("PrimaryCustomerSysId");
+
                     b.HasIndex("PrimaryFoundByTeamSysId");
 
                     b.HasIndex("PrimaryOwnerSysId");
@@ -192,6 +416,10 @@ namespace MaelstromPlatform.API._Migrations
                     b.HasIndex("PrimaryOwnerTeamSysId");
 
                     b.HasIndex("PrimaryReportedByTeamSysId");
+
+                    b.HasIndex("ProductSysId");
+
+                    b.HasIndex("ProjectSysId");
 
                     b.HasIndex("ReportedByPrimaryPersonSysId");
 
@@ -248,6 +476,48 @@ namespace MaelstromPlatform.API._Migrations
                     b.HasKey("SysId");
 
                     b.ToTable("IssuePriorities");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueProductEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.HasIndex("ProductSysId");
+
+                    b.ToTable("IssueProducts");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueProjectEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProjectSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.HasIndex("ProjectSysId");
+
+                    b.ToTable("IssueProjects");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueSeverityEntity", b =>
@@ -328,6 +598,27 @@ namespace MaelstromPlatform.API._Migrations
                     b.ToTable("IssueStatuses");
                 });
 
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueTagEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TagSysId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SysId");
+
+                    b.HasIndex("IssueSysId");
+
+                    b.HasIndex("TagSysId");
+
+                    b.ToTable("IssueTags");
+                });
+
             modelBuilder.Entity("MaelstromPlatform.API.Person.PersonEntity", b =>
                 {
                     b.Property<Guid>("SysId")
@@ -355,6 +646,55 @@ namespace MaelstromPlatform.API._Migrations
                     b.ToTable("People");
                 });
 
+            modelBuilder.Entity("MaelstromPlatform.API.Product.ProductEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Project.ProjectEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Tag.TagEntity", b =>
+                {
+                    b.Property<Guid>("SysId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SysId");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("MaelstromPlatform.API.Team.TeamEntity", b =>
                 {
                     b.Property<Guid>("SysId")
@@ -373,6 +713,63 @@ namespace MaelstromPlatform.API._Migrations
                     b.HasKey("SysId");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Attachment.IssueAttachmentEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Attachment.AttachmentEntity", "Attachment")
+                        .WithMany("Issues")
+                        .HasForeignKey("AttachmentSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Attachments")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Customer.IssueCustomerEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Customer.CustomerEntity", "Customer")
+                        .WithMany("IssueCustomers")
+                        .HasForeignKey("CustomerSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("IssueCustomers")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Document.IssueDocumentEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Document.DocumentEntity", "Document")
+                        .WithMany("Issues")
+                        .HasForeignKey("DocumentSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Documents")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Document");
+
+                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueApprovalEntity", b =>
@@ -403,6 +800,44 @@ namespace MaelstromPlatform.API._Migrations
                         .IsRequired();
 
                     b.Navigation("PersonEntity");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueChampionEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Champions")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Person.PersonEntity", "Champion")
+                        .WithMany("IssueChampions")
+                        .HasForeignKey("PersonSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Champion");
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueComponentEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Component.ComponentEntity", "Component")
+                        .WithMany("Issues")
+                        .HasForeignKey("ComponentSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Components")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Component");
+
+                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueEntity", b =>
@@ -449,6 +884,12 @@ namespace MaelstromPlatform.API._Migrations
                         .OnDelete(DeleteBehavior.ClientNoAction)
                         .IsRequired();
 
+                    b.HasOne("MaelstromPlatform.API.Customer.CustomerEntity", "PrimaryCustomer")
+                        .WithMany("IssuesEncountered")
+                        .HasForeignKey("PrimaryCustomerSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MaelstromPlatform.API.Team.TeamEntity", "PrimaryFoundByTeam")
                         .WithMany("IssuesFound")
                         .HasForeignKey("PrimaryFoundByTeamSysId")
@@ -473,6 +914,18 @@ namespace MaelstromPlatform.API._Migrations
                         .OnDelete(DeleteBehavior.ClientNoAction)
                         .IsRequired();
 
+                    b.HasOne("MaelstromPlatform.API.Product.ProductEntity", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Project.ProjectEntity", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectSysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MaelstromPlatform.API.Person.PersonEntity", "ReportedByPrimaryPerson")
                         .WithMany("IssuesReported")
                         .HasForeignKey("ReportedByPrimaryPersonSysId")
@@ -493,6 +946,8 @@ namespace MaelstromPlatform.API._Migrations
 
                     b.Navigation("PrimaryChampion");
 
+                    b.Navigation("PrimaryCustomer");
+
                     b.Navigation("PrimaryFoundByTeam");
 
                     b.Navigation("PrimaryOwner");
@@ -501,12 +956,111 @@ namespace MaelstromPlatform.API._Migrations
 
                     b.Navigation("PrimaryReportedByTeam");
 
+                    b.Navigation("Product");
+
+                    b.Navigation("Project");
+
                     b.Navigation("ReportedByPrimaryPerson");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueProductEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Products")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Product.ProductEntity", "Product")
+                        .WithMany("Issues")
+                        .HasForeignKey("ProductSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueProjectEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Projects")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Project.ProjectEntity", "Project")
+                        .WithMany("Issues")
+                        .HasForeignKey("ProjectSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueTagEntity", b =>
+                {
+                    b.HasOne("MaelstromPlatform.API.Issue.IssueEntity", "Issue")
+                        .WithMany("Tags")
+                        .HasForeignKey("IssueSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("MaelstromPlatform.API.Tag.TagEntity", "Tag")
+                        .WithMany("Issues")
+                        .HasForeignKey("TagSysId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Attachment.AttachmentEntity", b =>
+                {
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Component.ComponentEntity", b =>
+                {
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Customer.CustomerEntity", b =>
+                {
+                    b.Navigation("IssueCustomers");
+
+                    b.Navigation("IssuesEncountered");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Document.DocumentEntity", b =>
+                {
+                    b.Navigation("Issues");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueEntity", b =>
                 {
                     b.Navigation("Approvals");
+
+                    b.Navigation("Attachments");
+
+                    b.Navigation("Champions");
+
+                    b.Navigation("Components");
+
+                    b.Navigation("Documents");
+
+                    b.Navigation("IssueCustomers");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("Projects");
+
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Issue.IssueKindEntity", b =>
@@ -536,6 +1090,8 @@ namespace MaelstromPlatform.API._Migrations
 
             modelBuilder.Entity("MaelstromPlatform.API.Person.PersonEntity", b =>
                 {
+                    b.Navigation("IssueChampions");
+
                     b.Navigation("IssuesChampioned");
 
                     b.Navigation("IssuesFound");
@@ -543,6 +1099,21 @@ namespace MaelstromPlatform.API._Migrations
                     b.Navigation("IssuesOwned");
 
                     b.Navigation("IssuesReported");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Product.ProductEntity", b =>
+                {
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Project.ProjectEntity", b =>
+                {
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("MaelstromPlatform.API.Tag.TagEntity", b =>
+                {
+                    b.Navigation("Issues");
                 });
 
             modelBuilder.Entity("MaelstromPlatform.API.Team.TeamEntity", b =>
