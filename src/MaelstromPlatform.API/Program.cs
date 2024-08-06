@@ -25,7 +25,7 @@ builder.Services.AddControllers(options =>
 .AddXmlSerializerFormatters();
 
 builder.Services.AddDbContext<MaelstromContext>(
-    dbContextOptions => dbContextOptions.UseSqlServer(connStr));
+    dbContextOptions => dbContextOptions.UseSqlServer("TEST"));
 
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();
 
