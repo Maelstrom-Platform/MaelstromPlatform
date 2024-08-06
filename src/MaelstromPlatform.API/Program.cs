@@ -3,9 +3,11 @@ using MaelstromPlatform.API.Issue;
 using Microsoft.EntityFrameworkCore;
 
 //var connStr = Environment.GetEnvironmentVariable("SQLCONNSTR_MaelstromPlatformDev");
-var connStr = Environment.GetEnvironmentVariable("TEST");
+//var connStr = Environment.GetEnvironmentVariable("TEST");
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connStr = builder.Configuration.GetConnectionString("SQLCONNSTR_MaelstromPlatformDev");
 
 // Add services to the container.
 
@@ -25,7 +27,7 @@ builder.Services.AddControllers(options =>
 .AddXmlSerializerFormatters();
 
 builder.Services.AddDbContext<MaelstromContext>(
-    dbContextOptions => dbContextOptions.UseSqlServer("TEST"));
+    dbContextOptions => dbContextOptions.UseSqlServer(connStr));
 
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();
 
