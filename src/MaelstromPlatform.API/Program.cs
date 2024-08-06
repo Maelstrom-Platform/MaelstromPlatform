@@ -11,9 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(policy =>
 {
     policy.AddPolicy("Development", builder =>
-        builder.WithOrigins("https://*:49052/")
-            .SetIsOriginAllowedToAllowWildcardSubdomains()
-            .AllowAnyOrigin());
+        builder.WithOrigins("https://api.maelstromplatform-dev.org"));
 });
 
 builder.Services.AddControllers(options =>
