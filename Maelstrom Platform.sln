@@ -11,13 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		AUTHORS.md = AUTHORS.md
-		.github\workflows\azure-static-web-apps-thankful-ground-06042d60f.yml = .github\workflows\azure-static-web-apps-thankful-ground-06042d60f.yml
 		ChangeLog.md = ChangeLog.md
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		CONTRIBUTING.md = CONTRIBUTING.md
 		COPYING.md = COPYING.md
+		.github\workflows\dev_maelstromplatform-api-dev.yml = .github\workflows\dev_maelstromplatform-api-dev.yml
 		INSTALL.md = INSTALL.md
-		.github\workflows\main_maelstromplatformuidev.yml = .github\workflows\main_maelstromplatformuidev.yml
 		NEWS.md = NEWS.md
 		README.md = README.md
 	EndProjectSection
