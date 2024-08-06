@@ -2,8 +2,7 @@ using MaelstromPlatform.API.DbContexts;
 using MaelstromPlatform.API.Issue;
 using Microsoft.EntityFrameworkCore;
 
-var connStr = Environment.GetEnvironmentVariable("SQLCONNSTR_MaelstromPlatformDev");
-//var connStr = Environment.GetEnvironmentVariable("TEST");
+var connStr = Environment.GetEnvironmentVariable("SQLCONNSTR_MaelstromPlatformDev", EnvironmentVariableTarget.Machine);
 
 var builder = WebApplication.CreateBuilder(args);
 

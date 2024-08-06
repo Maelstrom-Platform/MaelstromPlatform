@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaelstromPlatform.API._Migrations
 {
     [DbContext(typeof(MaelstromContext))]
-    [Migration("20240804235747_InitialMigration")]
+    [Migration("20240806010904_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
