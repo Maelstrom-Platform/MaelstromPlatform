@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connStr = builder.Configuration.GetConnectionString("SQLCONNSTR_MaelstromPlatformDev");
+var connStr = builder.Configuration.GetConnectionString("MaelstromPlatformDev");
 
 // Add services to the container.
 
