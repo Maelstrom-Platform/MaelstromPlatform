@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(policy =>
 {
     policy.AddPolicy("Development", builder =>
-        builder.WithOrigins("https://api.maelstromplatform-dev.org"));
+        builder.WithOrigins("https://api.maelstromplatform-dev.org")
+            .AllowAnyHeader());
 });
 
 builder.Services.AddControllers(options =>
